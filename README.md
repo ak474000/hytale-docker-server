@@ -103,3 +103,47 @@ Then within the compose you can add the ARGS .env key pair as so which will help
 | JAVA_ARGS      | ""                | Input a customer set of Java Arguments that the server will start with. See [community documentation](https://hytale-docs.com/docs/servers/setup/configuration#java-25-jvm-configuration) on recommended Arguments                                       |  
 | REGEN_CONFIG   | true              | regenerates the config JSON inputting set ENV variables                                                       |    
 | KEEP_DOWNLOADS | false             | keeps the zips from downloading Hytale Downloader and the game files. This helps to prevent extra downloads.  | 
+
+# Running The Container
+
+On first start, you will need to auth twice, once with the Hytale Downloader and once again when the server runs
+
+Once you auth with both you will not need to do it again the Hytale Downloader and Game will store the information on disk
+
+if you attempt to attach to the container at a certain point you might see no activity or text of any kind if it is waiting for this input. It is instead better to issue a Docker Log command as follows which will give you the output history so you can copy out the authentication links.
+
+```
+docker ps -a #gather the name and or IDs of running containers
+docker log <container name or container ID>
+```
+
+<img src="assets/authscreenshot.png" alt="auth example" style="width: 600px; height: 300px;">
+
+More seamless to use the link highlighted in red here as it contains the auth code.
+
+Once the server files are extracted, you will also need to Auth the server itself with your Hytale account.
+
+This will require you to issue commands on the server. This can be done by attaching to the running container.
+
+```
+docker attach <container name>
+```
+## NOTE! using CTRL + C will kill the running process and the container from an attached session. Use the Escape sequence instead to leave the container running after you are done!
+
+- CTRL + P
+- CTRL + Q
+
+---
+
+Once attached, issue the following command:
+
+```
+/auth login device
+```
+
+<img src="assets/authlogin.png" alt="auth example" style="width: 1000px; height: 300px;">
+
+This is the same as before recommenced to use the link that includes the auth code.
+the server should indicate that it was able to successfully login.
+
+You should now be able to connect to the server at your Host machine IP address at whatever Host port you mapped within the Docker Compose.

@@ -1,0 +1,12 @@
+services:
+  hytale:
+    image: amk/hytale-server
+    tty: true
+    stdin_open: true
+    ports:
+      - "5520:5520/udp"
+    environment:
+      - MEMORY=8G
+    volumes:
+      - Path/On/Host:/data
+    restart: unless-stopped

@@ -22,6 +22,7 @@ you should now be able to initalize the container through compose
 ```docker compose up -d```
 
 # Enviornment variables 
+## DO NOTE: some java args will require the inclusion of the following argument to run  
 
 | **ENV**        | **Default Value** | **Description**                                                                                               | 
 |----------------|-------------------|---------------------------------------------------------------------------------------------------------------|
@@ -34,6 +35,6 @@ you should now be able to initalize the container through compose
 | WORLD_NAME     | default           | Sets default world folder name within config JSON                                                             |  
 | GAME_MODE      | Adventure         | Sets server game mode                                                                                         |  
 | AUTO_UPDATE    | true              | Runs update check for new server version and installs it on container start                                   |    
-| JAVA_ARGS      | ""                | Input a customer set of Java Arguments that the server will start with                                        |  
+| JAVA_ARGS      | ""                | Input a customer set of Java Arguments that the server will start with. See [community documentation](https://hytale-docs.com/docs/servers/setup/configuration#java-25-jvm-configuration) on recomended Arguments                                       |  
 | REGEN_CONFIG   | true              | regenerates the config JSON inputting set ENV variables                                                       |    
 | KEEP_DOWNLOADS | false             | keeps the zips from downloading Hytale Downloader and the game files. This helps to prevent extra downloads.  | 

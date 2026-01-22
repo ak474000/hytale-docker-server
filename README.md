@@ -67,7 +67,7 @@ many of the environment variables have built in defaults as listed below. Port a
 ```
 You shouldn't need to modify the port the container runs on.
 
-For the Java args, it might get messey adding them directly to the compose
+For the Java args, it might get messy adding them directly to the compose
 
 ```
     environment:
@@ -75,7 +75,7 @@ For the Java args, it might get messey adding them directly to the compose
       -JAVA_ARGS=-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+DisableExplicitGC -XX:+AlwaysPreTouch...
 ```
 
-you can make a .env file within the directory the compose is in and add the whatever name you like to the value will use ARGS as an example.
+you can make a .env file within the directory the compose is in and add whatever name you like to the value will use ARGS as an example.
 
 ```
 ARGS=-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+DisableExplicitGC -XX:+AlwaysPreTouch...
@@ -88,7 +88,6 @@ Then within the compose you can add the ARGS .env key pair as so which will help
       - MEMORY=8G
       -JAVA_ARGS=${ARGS}
 ```
-
 
 | **ENV**        | **Default Value** | **Description**                                                                                               | 
 |----------------|-------------------|---------------------------------------------------------------------------------------------------------------|

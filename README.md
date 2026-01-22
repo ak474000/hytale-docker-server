@@ -32,6 +32,11 @@ services:
 ...
 ```
 
+```
+docker compose build
+docker compose up -d
+```
+
 Context of '.' only works if the Dockerfile and its dependencies are within the same directory as the docker-compose.yaml. For those that like to use the bind mount of ./ within your compose and you are not planning on keeping the compose within the repo clone directory.
 
 

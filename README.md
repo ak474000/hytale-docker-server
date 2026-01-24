@@ -1,5 +1,4 @@
 # hytale-docker-server
-Hytale Server containerized with Auto updating Support
 
 this image supports setting configuration through environment variables listed below.
 

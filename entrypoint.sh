@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source /scripts/configgen.sh
-source /scripts/autoupdate.sh
 
 MEMORY_OPTS="-Xms${MEMORY:-4G} -Xmx${MEMORY:-4G}"
 SERVER_NAME=${SERVER_NAME:-"Hytale Server"}
@@ -13,12 +12,12 @@ WORLD_NAME=${WORLD_NAME:-"default"}
 GAME_MODE=${GAME_MODE:-"Adventure"}
 JARFILE="HytaleServer.jar"
 ASSETS_ZIP="Assets.zip"
-AUTO_UPDATE=${AUTO_UPDATE:-"true"}
 JAVA_ARGS=${JAVA_ARGS:-""}
 REGEN_CONFIG=${REGEN_CONFIG:-"true"}
 KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
 #PRE_RELEASE=${PRE_RELEASE:-"false"}
 
+# from /scripts/configgen.sh
 configGen
 
 echo "Validating Downloader..."
@@ -48,22 +47,16 @@ if [ ! -f $JARFILE ]  || [ ! -f $ASSETS_ZIP ] || [ ! -f "HytaleServer.aot" ]; th
         echo -e "Downloading game files...\n"
         ./ht-downloader -download-path game.zip
     else
-        echo "Located local copy of game.zip Extracting...." 
+        echo "Located local copy of game.zip" 
     fi
 
     echo "Uncompressing....this can take a bit..."
-    unzip -o game.zip
+    unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
     mv ./Server/HytaleServer.jar .
     mv ./Server/HytaleServer.aot .
 
 else
     echo -e "Game files Validated.\n"
-fi
-
-if [ $AUTO_UPDATE = "true" ]; then
-    autoUpdate
-else
-    echo -e "Auto Updates set to False.\n"
 fi
 
 if [ $KEEP_DOWNLOADS = "false" ]; then 

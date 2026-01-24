@@ -1,0 +1,9 @@
+.*
+dockertest
+*.yml
+*.yaml
+Dockerfile*
+Dockerfile
+*.md
+assets
+*.png

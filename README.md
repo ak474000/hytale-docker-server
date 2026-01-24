@@ -1,7 +1,7 @@
 # hytale-docker-server
 Hytale Server containerized with Auto updating Support
 
-this image supports auto updating server JAR on container restart and being able to set configuration through environment variables listed below.
+this image supports setting configuration through environment variables listed below.
 
 # Build From Repo
 
@@ -103,8 +103,7 @@ Then within the compose you can add the ARGS .env key pair as so which will help
 | MAX_PLAYERS    | 100               | Sets max players within confg JSON                                                                            | 
 | MAX_RADIUS     | 32                | Sets server render range within config JSON                                                                   |  
 | WORLD_NAME     | default           | Sets default world folder name within config JSON                                                             |  
-| GAME_MODE      | Adventure         | Sets server game mode                                                                                         |  
-| AUTO_UPDATE    | true              | Runs update check for new server version and installs it on container start                                   |    
+| GAME_MODE      | Adventure         | Sets server game mode                                                                                         |     
 | JAVA_ARGS      | ""                | Input a customer set of Java Arguments that the server will start with. See [community documentation](https://hytale-docs.com/docs/servers/setup/configuration#java-25-jvm-configuration) on recommended Arguments                                       |  
 | REGEN_CONFIG   | true              | regenerates the config JSON inputting set ENV variables                                                       |    
 | KEEP_DOWNLOADS | false             | keeps the zips from downloading Hytale Downloader and the game files. This helps to prevent extra downloads.  | 
@@ -145,6 +144,7 @@ Once attached, issue the following command:
 ```
 /auth login device
 ```
+*By defualt the compose passes in your linux hosts machine-id to the container as read only this is needed to properly store the auth file on disk.*
 
 <img src="assets/authlogin.png" alt="auth example" style="width: 1000px; height: 300px;">
 

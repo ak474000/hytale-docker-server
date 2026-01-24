@@ -9,4 +9,5 @@ services:
       - MEMORY=8G
     volumes:
       - Path/On/Host:/data
+      - /etc/machine-id:/etc/machine-id:ro
     restart: unless-stopped

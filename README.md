@@ -144,7 +144,6 @@ Once attached, issue the following command:
 ```
 /auth login device
 ```
-*By defualt the compose passes in your linux hosts machine-id to the container as read only this is needed to properly store the auth file on disk.*
 
 <img src="assets/authlogin.png" alt="auth example" style="width: 1000px; height: 300px;">
 
@@ -152,3 +151,11 @@ This is the same as before recommenced to use the link that includes the auth co
 the server should indicate that it was able to successfully login.
 
 You should now be able to connect to the server at your Host machine IP address at whatever Host port you mapped within the Docker Compose.
+
+*if you get an error that it can't save the auth file you will need to mount the hosts machine-id file the bind is already in the compose but commented out see below*
+
+```
+    volumes:
+      - Path/On/Host:/data
+      #- /etc/machine-id:/etc/machine-id  <---- uncomment this line
+```

@@ -14,7 +14,7 @@ ensure your working directory is within the cloned folder
 
 run
 
-```docker build -t <add your own tag> .```
+```docker build -t amk/hytale-server .``` *the Compose is setup to use this tag name. If you change the tag name to something else you need the change the 'image:' declaration within the compose to match.*
 
 you should now be able to initialize the container through compose
 

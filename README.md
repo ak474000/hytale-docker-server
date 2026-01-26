@@ -146,7 +146,7 @@ Once attached, issue the following command:
 
 <img src="assets/authlogin.png" alt="auth example" style="width: 1000px; height: 300px;">
 
-This is the same as before recommenced to use the link that includes the auth code.
+This is the same as before recommended to use the link that includes the auth code.
 the server should indicate that it was able to successfully login.
 
 You should now be able to connect to the server at your Host machine IP address at whatever Host port you mapped within the Docker Compose.
@@ -156,5 +156,5 @@ You should now be able to connect to the server at your Host machine IP address 
 ```
     volumes:
       - Path/On/Host:/data
-      #- /etc/machine-id:/etc/machine-id  <---- uncomment this line
+      #- /etc/machine-id:/etc/machine-id:ro  <---- uncomment this line
 ```

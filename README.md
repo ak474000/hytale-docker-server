@@ -61,7 +61,9 @@ You can also keep everything within the clone repo directory and if you wish for
 
 
 # Environment variables 
-## DO NOTE: some java args will require the inclusion of the following argument to run  -XX:+UnlockExperimentalVMOptions
+## DO NOTE: some java args will require the inclusion of the following argument to run  
+
+- -XX:+UnlockExperimentalVMOptions
 
 many of the environment variables have built in defaults as listed below. Port assignments are done through the port mapping within the compose if you need the server to run on a different port, change the mapping as follows
 

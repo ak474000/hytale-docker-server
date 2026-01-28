@@ -20,8 +20,6 @@ PRE_RELEASE=${PRE_RELEASE:-"false"}
 # from /scripts/configgen.sh
 configGen
 
-
-
 patchLineCheck(){
     local checkversion=""
     if [ -f $JARFILE ]; then    

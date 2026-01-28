@@ -106,6 +106,7 @@ Then within the compose you can add the ARGS .env key pair as so which will help
 | JAVA_ARGS      | ""                | Input a customer set of Java Arguments that the server will start with. See [community documentation](https://hytale-docs.com/docs/servers/setup/configuration#java-25-jvm-configuration) on recommended Arguments                                       |  
 | REGEN_CONFIG   | true              | regenerates the config JSON inputting set ENV variables                                                       |    
 | KEEP_DOWNLOADS | false             | keeps the zips from downloading Hytale Downloader and the game files. This helps to prevent extra downloads.  | 
+| PRE_RELEASE| false             | Will cause the Downloader to pick the Pre-Release versions if set to True will automatically swap out JAR on startup to the correct version if you change it. Keep set to false if you want the Release version.  | 
 
 # Running The Container
 
@@ -158,3 +159,22 @@ You should now be able to connect to the server at your Host machine IP address 
       - Path/On/Host:/data
       #- /etc/machine-id:/etc/machine-id:ro  <---- uncomment this line
 ```
+# Updating Server
+
+Hytale devs indicated they are working on a way for the server to update itself.
+
+Until then, the easiest way to force and update is to top the server 
+
+```
+docker stop <container-name>
+```
+
+delete any of the following
+
+- HytaleServer.Jar
+- Assets.zip
+- HytaleServer.aot
+
+along with the game.zip if you happen to be keeping it to save on needless downloads. The image will prioritize local cache of the zips. 
+
+run the container again and the image will grab the latest release/pre-release you select.

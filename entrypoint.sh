@@ -30,28 +30,28 @@ patchLineCheck(){
                 checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
                 checkversion=$(echo ${checkversion//[().,]})
                 if [ $checkversion = "release"  ]; then  
-                    echo "Pre release selected and swapping out versions."
+                    echo "Pre release selected and swapping out versions..."
                     ./ht-downloader -patchline pre-release -download-path game.zip
                     echo "Uncompressing....this can take a bit..."
                     unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
                     mv ./Server/HytaleServer.jar .
                     mv ./Server/HytaleServer.aot .
                 else
-                    echo "Game matches Patchline settings"  
+                    echo "Game matches Patchline Pre-Release."  
                 fi
                 ;;
             false) 
                 checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
                 checkversion=$(echo ${checkversion//[().,]})
                 if [ $checkversion != "release" ]; then
-                    echo "Pre release deselected and swapping out back to release."
+                    echo "Release selected and swapping out versions...."
                     ./ht-downloader -download-path game.zip
                     echo "Uncompressing....this can take a bit..."
                     unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
                     mv ./Server/HytaleServer.jar .
                     mv ./Server/HytaleServer.aot .
                 else 
-                    echo "Game matches Patchline settings"
+                    echo "Game matches Patchline Release."
                 fi
                 ;;
             *) 

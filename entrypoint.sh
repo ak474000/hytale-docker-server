@@ -18,6 +18,7 @@ KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
 PRE_RELEASE=${PRE_RELEASE:-"false"}
 
 # from /scripts/configgen.sh
+# uses jq to create server config structure and substituent above relevant ENV variables
 configGen
 
 patchLineCheck(){

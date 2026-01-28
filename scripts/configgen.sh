@@ -3,8 +3,6 @@
 configGen(){
 if [ $REGEN_CONFIG = "true" ]; then
 	echo "Generating config JSON...."
-	# Use jq to build the JSON object
-	# We use --arg for strings and --argjson for numbers/booleans
 	jq -n \
   	  --arg name "$SERVER_NAME" \
   	  --arg motd "$MOTD" \

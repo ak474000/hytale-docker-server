@@ -2,7 +2,7 @@
 
 source /scripts/configgen.sh
 
-MEMORY_OPTS="-Xms${MEMORY:-4G} -Xmx${MEMORY:-4G}"
+MEMORY="-Xms${MEMORY:-4G} -Xmx${MEMORY:-4G}"
 SERVER_NAME=${SERVER_NAME:-"Hytale Server"}
 MOTD=${MOTD:-""}
 PASSWORD=${PASSWORD:-""}
@@ -15,11 +15,11 @@ ASSETS_ZIP="Assets.zip"
 JAVA_ARGS=${JAVA_ARGS:-""}
 REGEN_CONFIG=${REGEN_CONFIG:-"true"}
 KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
-currentversion=""
 PRE_RELEASE=${PRE_RELEASE:-"false"}
 
 # from /scripts/configgen.sh
 configGen
+
 
 
 patchLineCheck(){
@@ -148,4 +148,4 @@ else
     echo -e "No Java Arguments were Provided Starting Server...\n"
 fi
 
-exec java $MEMORY_OPTS $JAVA_ARGS -jar $JARFILE --assets $ASSETS_ZIP --bind 0.0.0.0:5520
+exec java $MEMORY $JAVA_ARGS -jar $JARFILE --assets $ASSETS_ZIP --bind 0.0.0.0:5520

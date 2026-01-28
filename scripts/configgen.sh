@@ -1,7 +1,7 @@
 #!/bin/bash
 
 configGen(){
-if [ ! -f "config.json" ] || [ $REGEN_CONFIG = "true" ]; then
+if [ $REGEN_CONFIG = "true" ]; then
 	echo "Generating config JSON...."
 	# Use jq to build the JSON object
 	# We use --arg for strings and --argjson for numbers/booleans

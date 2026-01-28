@@ -163,7 +163,7 @@ You should now be able to connect to the server at your Host machine IP address 
 
 Hytale devs indicated they are working on a way for the server to update itself.
 
-Until then, the easiest way to force and update is to top the server 
+Until then, the easiest way to force an update is to stop the server 
 
 ```
 docker stop <container-name>

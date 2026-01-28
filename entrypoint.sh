@@ -16,17 +16,21 @@ JAVA_ARGS=${JAVA_ARGS:-""}
 REGEN_CONFIG=${REGEN_CONFIG:-"true"}
 KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
 currentversion=""
-#PRE_RELEASE=${PRE_RELEASE:-"false"}
+PRE_RELEASE=${PRE_RELEASE:-"false"}
 
 # from /scripts/configgen.sh
 configGen
 
 
-patchLineCheck(){  
+patchLineCheck(){
+    local checkversion=""
     if [ -f $JARFILE ]; then    
         case $PRE_RELEASE in
             true)
-                if [ $(exec java -jar $JARFILE --version | cut -d ' ' 3 | grep -P /w+) = "release"]; then  
+                checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
+                checkversion=$(echo ${checkversion//[().,]})
+                if [ $checkversion = "release"  ]; then  
+                    echo "Pre release selected and swapping out versions."
                     ./ht-downloader -patchline pre-release -download-path game.zip
                     echo "Uncompressing....this can take a bit..."
                     unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
@@ -37,7 +41,10 @@ patchLineCheck(){
                 fi
                 ;;
             false) 
-                if [ $(exec java -jar $JARFILE --version | cut -d ' ' 3 | grep -P /w+) != "release" ]; then
+                checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
+                checkversion=$(echo ${checkversion//[().,]})
+                if [ $checkversion != "release" ]; then
+                    echo "Pre release deselected and swapping out back to release."
                     ./ht-downloader -download-path game.zip
                     echo "Uncompressing....this can take a bit..."
                     unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
@@ -48,18 +55,20 @@ patchLineCheck(){
                 fi
                 ;;
             *) 
-                echo "invalid value for PRE_RELEASE"
+                echo "invalid value for PRE_RELEASE needs to be either 'true' or 'false'"
                 exit 1
                 ;;    
         esac
     else
         if [ $PRE_RELEASE = "true" ]; then
+            echo "JAR missing. Pre Release version selected, downloading."
             ./ht-downloader -patchline pre-release -download-path game.zip
             echo "Uncompressing....this can take a bit..."
             unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
             mv ./Server/HytaleServer.jar .
             mv ./Server/HytaleServer.aot .
         else
+            echo "JAR missing. Grabbing release version."
             ./ht-downloader -download-path game.zip
             echo "Uncompressing....this can take a bit..."
             unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
@@ -94,7 +103,6 @@ if [ ! -f $JARFILE ]  || [ ! -f $ASSETS_ZIP ] || [ ! -f "HytaleServer.aot" ]; th
     echo "Games files missing..."
     
     if [ ! -f "game.zip" ]; then
-        echo -e "Downloading game files...\n"
          patchLineCheck
         
     else

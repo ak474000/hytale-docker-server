@@ -175,6 +175,6 @@ delete any of the following
 - Assets.zip
 - HytaleServer.aot
 
-along with the game.zip if you happen to be keeping it to save on needless downloads. The image will prioritize local cache of the zips. 
+*If you have a game.zip cache enabled through KEEP_DOWNLOADS to TRUE you don't need to remove it first. It will still evalute if the JAR needs to be swapped.*
 
 run the container again and the image will grab the latest release/pre-release you select.

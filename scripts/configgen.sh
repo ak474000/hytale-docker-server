@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 configGen(){
 if [ $REGEN_CONFIG = "true" ]; then

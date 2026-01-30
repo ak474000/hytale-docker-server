@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
-source /scripts/*
+source /scripts/gamepatchline.sh
+source /scripts/configgen.sh
 
 MEMORY="-Xms${MEMORY:-4G} -Xmx${MEMORY:-4G}"
 SERVER_NAME=${SERVER_NAME:-"Hytale Server"}

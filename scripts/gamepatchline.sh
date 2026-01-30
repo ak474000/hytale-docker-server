@@ -3,10 +3,13 @@
 patchLineCheck(){
     local checkversion=""
     if [ -f $JARFILE ]; then    
+        
+        checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
+        checkversion=$(echo ${checkversion//[().,]})
+        echo -e "Downloaded Server PatchLine: $checkversion\n"
+        
         case $PRE_RELEASE in
             true)
-                checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
-                checkversion=$(echo ${checkversion//[().,]})
                 if [ $checkversion = "release"  ]; then  
                     echo "Pre release selected and swapping out versions..."
                     ./ht-downloader -patchline pre-release -download-path game.zip
@@ -19,8 +22,7 @@ patchLineCheck(){
                 fi
                 ;;
             false) 
-                checkversion=$(java -jar $JARFILE --version | cut -d ' ' -f 3)
-                checkversion=$(echo ${checkversion//[().,]})
+
                 if [ $checkversion != "release" ]; then
                     echo "Release selected and swapping out versions...."
                     ./ht-downloader -download-path game.zip
@@ -53,5 +55,5 @@ patchLineCheck(){
             mv ./Server/HytaleServer.jar .
             mv ./Server/HytaleServer.aot .
         fi
-fi
+    fi
 }

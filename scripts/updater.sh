@@ -10,6 +10,8 @@ updateCheck(){
 
         if (( $currentver > $jarver )); then
             echo -e "New Version Avilable updating Server JAR....\n"
+            ./ht-downloader -download-path game.zip
+            
         fi
 
     else

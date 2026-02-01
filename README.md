@@ -2,6 +2,10 @@
 
 this image supports setting configuration through environment variables listed below.
 
+pre-made image(s) available at ak474000/hytale-docker-server on Docker Hub.
+
+```docker pull ak474000/hytale-docker-server```
+
 # Build From Repo
 
 Install Docker from https://docs.docker.com/engine/install/
@@ -14,7 +18,7 @@ ensure your working directory is within the cloned folder
 
 run
 
-```docker build -t amk/hytale-server .``` *the Compose is setup to use this tag name. If you change the tag name to something else you need the change the 'image:' declaration within the compose to match.*
+```docker build -t ak474000/hytale-docker-server .``` *the Compose is setup to use this tag name. If you change the tag name to something else you need the change the 'image:' declaration within the compose to match.*
 
 you should now be able to initialize the container through compose
 

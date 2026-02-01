@@ -1,6 +1,6 @@
 services:
   hytale:
-    image: amk/hytale-server
+    image: ak474000/hytale-docker-server
     tty: true
     stdin_open: true
     ports:

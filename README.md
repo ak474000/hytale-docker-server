@@ -2,7 +2,7 @@
 
 this image supports setting configuration through environment variables listed below.
 
-pre-made image(s) available at ak474000/hytale-docker-server on Docker Hub.
+pre-made image(s) available at [ak474000/hytale-docker-server](https://hub.docker.com/r/ak474000/hytale-docker-server) on Docker Hub.
 
 ```docker pull ak474000/hytale-docker-server```
 

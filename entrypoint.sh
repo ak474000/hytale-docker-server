@@ -19,9 +19,8 @@ KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
 PRE_RELEASE=${PRE_RELEASE:-"false"}
 
 unZipGame(){
-    unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
+    unzip -o game.zip Server/HytaleServer.jar Assets.zip -d .
     mv ./Server/HytaleServer.jar .
-    mv ./Server/HytaleServer.aot .
 }
 
 # from /scripts/configgen.sh
@@ -49,7 +48,7 @@ fi
 
 
 echo "Validating Server JAR and dependencies..."
-if [ ! -f $JARFILE ]  || [ ! -f $ASSETS_ZIP ] || [ ! -f "HytaleServer.aot" ]; then
+if [ ! -f $JARFILE ]  || [ ! -f $ASSETS_ZIP ]; then
     echo "Games files missing..."
     
     if [ ! -f "game.zip" ]; then
@@ -91,8 +90,13 @@ if [ -d "Server" ]; then
 fi
 
 if [ -n "$JAVA_ARGS" ]; then
-    echo -e "Server will run with the following arguments:\n $JAVA_ARGS\n"
-else
+    echo -e "Server will run with the following arguments:\n"
+
+    for word in $JAVA_ARGS; do
+        echo $word
+    done
+    echo -e "\n"
+else    
     echo -e "No Java Arguments were Provided Starting Server...\n"
 fi
 

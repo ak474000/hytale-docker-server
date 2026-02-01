@@ -14,9 +14,7 @@ patchLineCheck(){
                     echo "Pre release selected and swapping out versions..."
                     ./ht-downloader -patchline pre-release -download-path game.zip
                     echo "Uncompressing....this can take a bit..."
-                    unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
-                    mv ./Server/HytaleServer.jar .
-                    mv ./Server/HytaleServer.aot .
+                    unZipGame
                 else
                     echo "Game matches Patchline Pre-Release."  
                 fi
@@ -27,9 +25,7 @@ patchLineCheck(){
                     echo "Release selected and swapping out versions...."
                     ./ht-downloader -download-path game.zip
                     echo "Uncompressing....this can take a bit..."
-                    unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
-                    mv ./Server/HytaleServer.jar .
-                    mv ./Server/HytaleServer.aot .
+                    unZipGame
                 else 
                     echo "Game matches Patchline Release."
                 fi
@@ -44,16 +40,12 @@ patchLineCheck(){
             echo "JAR missing. Pre Release version selected, downloading."
             ./ht-downloader -patchline pre-release -download-path game.zip
             echo "Uncompressing....this can take a bit..."
-            unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
-            mv ./Server/HytaleServer.jar .
-            mv ./Server/HytaleServer.aot .
+            unZipGame
         else
             echo "JAR missing. Grabbing release version."
             ./ht-downloader -download-path game.zip
             echo "Uncompressing....this can take a bit..."
-            unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
-            mv ./Server/HytaleServer.jar .
-            mv ./Server/HytaleServer.aot .
+            unZipGame
         fi
     fi
 }

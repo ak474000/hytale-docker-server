@@ -18,6 +18,12 @@ REGEN_CONFIG=${REGEN_CONFIG:-"true"}
 KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
 PRE_RELEASE=${PRE_RELEASE:-"false"}
 
+unZipGame(){
+    unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
+    mv ./Server/HytaleServer.jar .
+    mv ./Server/HytaleServer.aot .
+}
+
 # from /scripts/configgen.sh
 # uses jq to create server config structure and substituent above relevant ENV variables
 configGen
@@ -52,9 +58,7 @@ if [ ! -f $JARFILE ]  || [ ! -f $ASSETS_ZIP ] || [ ! -f "HytaleServer.aot" ]; th
     else
         echo "Located local copy of game.zip" 
         echo "Uncompressing....this can take a bit..."
-        unzip -o game.zip Server/HytaleServer.aot Server/HytaleServer.jar Assets.zip -d .
-        mv ./Server/HytaleServer.jar .
-        mv ./Server/HytaleServer.aot .
+        unZipGame
         patchLineCheck
     fi
 

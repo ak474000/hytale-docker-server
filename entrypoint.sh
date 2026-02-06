@@ -16,6 +16,8 @@ JAVA_ARGS=${JAVA_ARGS:-""}
 REGEN_CONFIG=${REGEN_CONFIG:-"true"}
 KEEP_DOWNLOADS=${KEEP_DOWNLOADS:-"false"}
 PRE_RELEASE=${PRE_RELEASE:-"false"}
+PVP=${PVP:-"true"}
+FALL_DAMAGE=${FALL_DAMAGE:-"true"}
 
 # from /scripts/configgen.sh
 # uses jq to create server config structure and substituent above relevant ENV variables

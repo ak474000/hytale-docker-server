@@ -2,7 +2,7 @@
 
 configGen(){
 if [ $REGEN_CONFIG = "true" ]; then
-	echo "Generating Server config JSON...."
+	echo "Generating Server/World config JSON...."
 	jq -n \
   	  --arg name "$SERVER_NAME" \
   	  --arg motd "$MOTD" \
@@ -12,38 +12,43 @@ if [ $REGEN_CONFIG = "true" ]; then
   	  --arg world "$WORLD_NAME" \
   	  --arg mode "$GAME_MODE" \
   '{
-    	"Version": 3,
-    	"ServerName": $name,
-    	"MOTD": $motd,
-    	"Password": $pass,
-    	"MaxPlayers": $max,
-    	"MaxViewRadius": $radius,
-    	"LocalCompressionEnabled": false,
+    "Version": 3,
+    "ServerName": $name,
+    "MOTD": $motd,
+    "Password": $pass,
+    "MaxPlayers": $max,
+    "MaxViewRadius": $radius,
+    "LocalCompressionEnabled": false,
     	"Defaults": {
-      	"World": $world,
-      	"GameMode": $mode
+    	"World": $world,
+    	"GameMode": $mode
     	},
-    	"ConnectionTimeouts": {
-      	"JoinTimeouts": {}
-    	},
-    	"RateLimit": {},
-    	 "Modules": {
-      	  "PathPlugin": {
-           "Modules": {}
-      	}
-    	},
-    	"LogLevels": {},
-    	"Mods": {},
-    	"DisplayTmpTagsInStrings": false,
-    	"PlayerStorage": {
-      	  "Type": "Hytale"
-    	},
-    	  "AuthCredentialStore": {
-      	  "Type": "Encrypted",
-      	  "Path": "auth.enc"
-    	 }
-     }' > config.json
-	echo -e "config generated.\n"
+  	"PlayerStorage": {
+    	"Type": "Hytale"
+  	},
+  	"AuthCredentialStore": {
+    	"Type": "Encrypted",
+    	"Path": "auth.enc"
+  	}
+   }' > config.json
+	echo -e "Server config generated.\n"
+
+	if [ ! -d universe/worlds/$WORLD_NAME ]; then
+		mkdir -p ./universe/worlds/$WORLD_NAME
+	fi
+
+	jq -n \
+  	  --arg pvp "$PVP" \
+	  --arg falldam "$FALL_DAMAGE" \
+  	  --arg world "$WORLD_NAME" \
+	'{
+  	"WorldGen": {
+    	"Type": "Hytale",
+    	"Name": $world
+  	},
+  	"IsPvpEnabled": $pvp,
+  	"IsFallDamageEnabled": $falldam,
+	}' > ./universe/worlds/$WORLD_NAME/config.json
 else
   echo -e "Skipping config JSON generation.\n"
 fi
